@@ -302,7 +302,8 @@ function RiakObject(bucketName, key, client, body, contentType, vclock) {
   if (contentType === 'application/json') {
     if (body !== undefined) {
       try {
-        this.body = JSON.parse(body);
+        // Prettify JSON strings
+        this.body = JSON.stringify(JSON.parse(body), null, 2);
       }
       catch (e) {
         this.body = body;
